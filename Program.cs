@@ -4,36 +4,47 @@ class AdditionCalculator
 {
     static void Main()
     {
-        Console.WriteLine("Calc V0.0.1");
-
         while (true)
         {
-            try
+            int result = 0;
+            bool exit = false;
+
+            while (!exit)
             {
-                Console.WriteLine("Enter the first number to add:");
-                string input1 = Console.ReadLine();
-                int number1 = int.Parse(input1);
-                Console.Clear();
-                Console.WriteLine("Current Problem:" + number1);
-                Console.WriteLine("Enter the second number to add:");
-                string input2 = Console.ReadLine();
-                int number2 = int.Parse(input2);
-                Console.Clear();
-                int presult = number1 + number2;
-                Console.WriteLine("Current Problem:" + number1 + "+" + number2 + "=" + presult);
-                Console.WriteLine("Enter the third number to add:");
-                string input3 = Console.ReadLine();
-                int number3 = int.Parse(input3);
-                Console.Clear();
+                try
+                {
+                    Console.Clear();
+                    Console.WriteLine("Calc V0.0.1");
+                    Console.WriteLine("Enter the number to add (or enter '=' to finish):");
+                    string input = Console.ReadLine();
 
-                int result = number1 + number2 + number3;
-
-                Console.WriteLine("Last Problems answer: " + number1 + " + " + number2 + " + " + number3 + " = " + result);
+                    if (input == "=")
+                    {
+                        exit = true;
+                    }
+                    else
+                    {
+                        int number = int.Parse(input);
+                        result += number;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("An error occurred:");
+                    Console.WriteLine("Exception details: " + ex.Message);
+                }
             }
-            catch (Exception ex)
+            Console.Clear();
+            Console.WriteLine("Final Result: " + result);
+            Console.WriteLine("Press 'Q' to quit or any other key to continue.");
+            char quitKey = Console.ReadKey().KeyChar;
+            if (quitKey == 'Q' || quitKey == 'q')
             {
-                Console.WriteLine("An error occurred:");
-                Console.WriteLine("Exception details: " + ex.Message);
+                Environment.Exit(1);
+            }
+            else
+            {
+                Console.Clear();
             }
         }
     }
